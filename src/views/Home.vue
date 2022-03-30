@@ -28,7 +28,7 @@
     <div class="outer">
       <div class="imgbox">
         <span class="pic" v-for="(item,index) in imgList" :key="index">
-          <img :src="item.image" />
+          <img class="theimg" :src="item.image" />
         </span>
       </div>
     </div>
@@ -65,95 +65,141 @@ body{
   margin: 0;
   background-color: rgb(40,39,39);
 }
-#bgimg{
-  position: absolute;
-  top:0;
-  left: 0;
-  width: 100%;
+/*竖屏移动端显示遮罩*/
+@media screen and (orientation: portrait) and (min-width:301px) and (max-width:450px){
+  #mask{
+    width:100%;
+    height:100%;
+    background-color:#000;
+    filter:alpha(opacity=50);
+    -moz-opacity:0.5;
+    opacity:0.5;
+    position:absolute;
+    left:0px;
+    top:0px;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+  }
+  #promptpic{
+    height: 200px;
+    margin: auto;
+    animation: rot 2s linear infinite;
+    animation-name: rot;
+  }
+  @keyframes rot
+  {
+    0%{
+      -webkit-transform: rotate(0deg);
+    }
+    25%{
+      -webkit-transform: rotate(90deg);
+    }
+    50%{
+      -webkit-transform: rotate(0deg);
+    }
+  }
 }
-#menu{
-  background-color: rgba(84,92,100,0.5);
-  margin: 20px;
-  border-radius:5px;
-  border: none;
-}
-.menuItem:hover{
-  background-color: #282727 !important;
-}
-.menuItem{
-  background-color: rgba(84,92,100,0.5) !important;
-}
-.logo{
-  position:absolute;
-  z-index: 1000;
-  margin: 5px;
-  left:200px;
-}
-#line{
-  border-bottom:solid ;
-  border-bottom-color: #A9B7BA;
-  position: relative;
-  top:90px;
-  left: -50%;
-  text-align: center;
-  vertical-align: center;
-  transform: scale(0.5);
-  width: 200%;
-  height:200%;
-}
-.outer{
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding:0;
-  top:190px;
-  position: absolute;
-}
-.imgbox{
-  display: flex;
-  margin: 3% 1% 0 3%;
-  flex-flow: row wrap;
-}
-.pic{
-  padding: 3px;
-  width: 30%;
-  overflow: hidden;
-  border: #282727;
-}
-#promptpic{
-   height: 200px;
-   margin: auto;
-   animation: rot 2s linear infinite;
-   animation-name: rot;
+@media screen and (orientation: portrait) {
+  #bgimg{
+    display: none;
+  }
+  #menu{
+    background-color: rgba(84,92,100,0.5);
+    margin: 20px;
+    border-radius:5px;
+    border: none;
+  }
+  .menuItem:hover{
+    background-color: #282727 !important;
+  }
+  .menuItem{
+    background-color: rgba(84,92,100,0.5) !important;
+  }
+  .logo{
+    display: none;
+  }
+  #line{
+    border-bottom:solid ;
+    border-bottom-color: #A9B7BA;
+    position: relative;
+    left: -50%;
+    text-align: center;
+    vertical-align: center;
+    transform: scale(0.5);
+    width: 200%;
+    height:200%;
+  }
+  .imgbox{
+    transform: scale(0.8);
+    position: relative;
+    top:-13rem
+  }
+  .theimg{
+    border: #282727;
+    margin-bottom: 20%;
+  }
  }
-@media screen and (orientation: portrait) and (max-width: 768px) {
-   #mask{
-       width:100%;
-       height:100%;
-       background-color:#000;
-       filter:alpha(opacity=50);
-       -moz-opacity:0.5;
-       opacity:0.5;
-       position:absolute;
-       left:0px;
-       top:0px;
-       z-index: 9999;
-       display: flex;
-       justify-content: center;
+/*横屏pc端*/
+@media screen and (orientation:landscape){
+   #mask{display: none}
+   #bgimg{
+     position: absolute;
+     top:0;
+     left: 0;
+     width: 100%;
    }
-   @keyframes rot
-   {
-     0%{
-       -webkit-transform: rotate(0deg);
-     }
-     25%{
-       -webkit-transform: rotate(90deg);
-     }
-     50%{
-       -webkit-transform: rotate(0deg);
-     }
+   #menu{
+     background-color: rgba(84,92,100,0.5);
+     margin: 20px;
+     border-radius:5px;
+     border: none;
    }
+   .menuItem:hover{
+     background-color: #282727 !important;
+   }
+   .menuItem{
+     background-color: rgba(84,92,100,0.5) !important;
+   }
+   .logo{
+     position:absolute;
+     z-index: 1000;
+     margin: 5px;
+     left:200px;
+   }
+   #line{
+     border-bottom:solid ;
+     border-bottom-color: #A9B7BA;
+     position: relative;
+     top:90px;
+     left: -50%;
+     text-align: center;
+     vertical-align: center;
+     transform: scale(0.5);
+     width: 200%;
+     height:200%;
+   }
+   .outer{
+     width: 100%;
+     height: 100%;
+     margin: 0;
+     padding:0;
+     top:190px;
+     position: absolute;
+   }
+   .imgbox{
+     display: flex;
+     margin: 3% 1% 0 3%;
+     flex-flow: row wrap;
+   }
+   .pic{
+     padding: 3px;
+     width: 30%;
+     overflow: hidden;
+     border: #282727;
+   }
+
+
  }
- @media screen and (orientation:landscape){ #mask{display: none}
- }
+
 </style>
